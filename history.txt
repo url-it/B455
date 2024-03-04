@@ -1,0 +1,3 @@
+    bias = np.mean(y_test - y_pred)
+    bias_squared = np.sqrt(bias**2)
+    variance = np.var(y_pred)

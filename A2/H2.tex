@@ -1,4 +1,6 @@
-\documentclass[12pt]{article}
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{enumitem}
 \title{HW \#2}
 \author{
     Uziel Rivera-Lopez
@@ -6,10 +8,90 @@
 \date{\today}
 \begin{document}
 \maketitle
+
 \section*{Question 1}
+\begin{enumerate}[label=\alph*)]
+    \item  Event A is drawing a red ball, $\frac{8}{20}$, event B is drawing a ball either red or green so $\frac{8}{20} + \frac{5}{20} = \frac{13}{20}$, and event C
+    is not drawing a blue ball so $1-\frac{7}{20}=\frac{13}{20}$.
+
+    P(B $\cap$ C) = $P(B)*P(C)$ = $\frac{13}{20} \cdot \frac{13}{20} = \frac{169}{400}$
+    \\P(A$|$B $\cap$ C) = $\frac{P(A \cap B \cap C)}{P(B \cap C)} = \frac{P(A)}{P(B \cap C)} = \frac{\frac{8}{20}}{\frac{169}{400}} = \frac{1600}{3380} = \frac{800}{1690}$
+
+    \item Because if you were doing B$\cap$C given A, and A given B$\cap$C
+    P(A$|$B$\cap$C) $\neq$ P(B$\cap$C $|$ A) 
+    they do not equal each other, hence they're dependent events from each other. Also if you were to do something like P(A$\cap$B$\cap$C) and P(A)* P(B$\cap$C) you would get different results.
+
+    \item $P(A \cap B) = P(B|A)P(A)$
+    \\$P(A | B) = \frac{P(A \cap B)}{P(B)} = \frac{P(B|A) P(A)}{P(B)}$
+    \\ By using the formula, we can see that the probability of A given B is dependent on the probability of B given A.
+\end{enumerate}
+
 \section*{Question 2}
+\begin{enumerate}[label=\alph*)]
+    \item Pr(p=0.5) = 0.9
+        \\Pr(p=0.6) = 0.1
+        \\$Pr(5H) = Pr(5H|p=0.5) \cdot Pr(p=0.5) + Pr(5H| p=0.6) * Pr(p=0.6)= $
+        \\ $(\binom{5}{5}*0.5^5) \cdot 0.9 + (\binom{5}{5}*0.6^5) \cdot 0.1$ = 0.035901
+        \\Pr(p=0.5$|$5H) = $\frac{Pr(5H) \cdot Pr(p=0.5)}{Pr(5H)} = \frac{0.28125}{ 0.035901} = .7834 = Pr(p=0.5)$
+        \\Pr(p=0.6) = 1 - Pr(p=0.5) = 0.2166
+    \item $\beta(a,b) = x^{a-1} \cdot (1-x)^{b-1} =  p^{a-1} \cdot (1-p)^{b-1}$ So,
+    \\$\beta(2,2) = x \cdot (1-x) =  p \cdot (1-p)$
+    \\$ $Likelihood$ = (1-p)^{10}$
+    \\$ $Posterior$ = p^{2-1}*(1-p)^{2-1} \cdot (1-p)^{10} = p^{2-1}*(1-p)^{12-1} = \beta(2,12)$ 
+
+\end{enumerate}
+
 \section*{Question 3}
+\begin{enumerate}
+    \item $L(\Theta)=\prod_{i=1}^{n} \frac{1}{\sqrt[]{2\pi\Theta_1}}\cdot e^{-\frac{(x_i-\Theta_0)^2}{2\Theta_1}}$ 
+    \\$log(L(\Theta)) = -\frac{n}{2}log\Theta_1 -\frac{n}{2}log(2\pi)-\frac{\Sigma(x_i - \Theta_0)}{2\Theta_1}$
+    \\$L(\Theta_0) = -\frac{n}{2}log\Theta_1 -\frac{n}{2}log(2\pi)-\frac{\Sigma(x_i - \Theta_0)}{2\Theta_1} $ 
+    \begin{enumerate}[label=\Roman*]
+        \item $\frac{d}{d\Theta_0} L(\Theta_0) = \frac{\Sigma (x_i - \Theta_0)}{\Theta_1} \cdot \Theta_1$
+        \item $\Theta_0 = \hat{\mu} = \frac{\Sigma x_i}{n} = \frac{\Sigma X}{n} = EX$
+    \end{enumerate}
+    $L(\Theta_0) = -\frac{n}{2}log\Theta_1 -\frac{n}{2}log(2\pi)-\frac{\Sigma(x_i - \Theta_0)}{2\Theta_1} $ 
+    \begin{enumerate}[label=\Roman*]
+        \item $\frac{d}{d\Theta_1} L(\Theta_1) = -\frac{n}{2\Theta_1} + \frac{\Sigma(x_i - \Theta_0)^2}{2\Theta_1^2}$
+        \item $\frac{n}{2\Theta_1} = \frac{\Sigma(x_i - \Theta_0)^2}{2\Theta_1^2}$
+        \item $\Theta_1= \hat{\sigma}^2 = \frac{\Sigma(x_i - \Theta_0)^2}{n} =  \frac{\Sigma(X - EX)^2}{n}$
+    \end{enumerate}
+    \item $\Theta_0 = \hat{\mu} = \frac{\sum_{i=1}^{10} X}{10} = \frac{-5 + 7 + 9 + 12 - 17 + 1 + 4 + 24 + 0 + 3}{10} = 2.8=  EX$
+    \\ $\Theta_1= \hat{\sigma}^2 = \frac{\sum_{i=1}^{10}(X - 2.8)^2}{10} = \\\frac{(-5 - 2.8)^2 + (7 - 2.8)^2 + (9 - 2.8)^2 + (12 - 2.8)^2 + (-17 - 2.8)^2 + (1 - 2.8)^2 + (4 - 2.8)^2 + (24 - 2.8)^2 + (0 - 2.8)^2 + (3 - 2.8)^2}{10}\\= 28.36$
+\end{enumerate}
+
 \section*{Question 4}
+\begin{enumerate}
+    \item $L(p|x) = \prod_{i=1}^{n} p^{x_i} \cdot (1-p)^{1-x_i}$
+    \\\\To maximize the likelihood funcion we take the derivative of the natural log likelihood function, which kind of also means logging and 
+    deriving P(x). since we are deriving the equation for we p we want to set it as p.
+    \begin{enumerate}[label=\Roman*]
+        \item  $L(p) = p^{\Sigma x_i} \cdot (1-p)^{n-\Sigma (x_i)}$
+        \item  $log(L(p)) = \Sigma x_i \cdot log(p) + \Sigma (1-x_i) \cdot log(1-p)$
+        \item $\frac{d}{dp}(L(p)) = \frac{\Sigma x_i}{p} - \frac{\Sigma x_i - n}{1-p}$
+        \item $(\frac{\Sigma x_i}{p} - \frac{\Sigma x_i - n}{1-p}) \cdot p(1-p)$
+        \item $\Sigma x_i-(\Sigma x_i \cdot p) - n+ (\Sigma x_i \cdot p)$
+        \item $\hat{p} = \frac{\sum_{i=1}^{n} X}{n}$
+    \end{enumerate}
+    \item Since we have two dice that have 1-6 on them, then the only times it equals 9 is 6+3, 3+6, 5+4, and 4+5, so basically four possiblites.
+    \\$\hat{p} = \frac{\sum_{i=1}^{36} X}{36}$
+    \\Since we have 36 possible outcomes, and 4 of them are 9.
+    \\$\hat{p} = \frac{4}{36} = \frac{1}{9}$
+\end{enumerate}
+
 \section*{Question 5}
+$P(X = 5) =  P(X=5 | \Theta=2) \cdot P(\Theta=2) + P(X=5|\Theta=4) \cdot P(\Theta=4) = 0.0469$
+\\$P(\Theta =2 \cap X = 5) = 0.022 \cdot 0.7 = 0.0154$
+\\$P(\Theta =4 \cap X = 5) = 0.105 \cdot 0.3 = 0.0315$
+\\$P(\Theta = 2 | X=5) = \frac{P(\Theta =2 \cap X = 5)}{X=5} =0.3284$
+\\$P(\Theta = 4 | X=5) = \frac{P(\Theta =4 \cap X = 5)}{X=5} =0.6716$
+
+
 \section*{Question 6}
+\begin{enumerate}
+   \item With the Bayes’ Estimator, we have the data and have some knowledge of the prior information/distribution. Having both of these two things, we can use this to calculate the posterior distribution. 
+   \item By knowing the prior information/distribution, it influences the posterior distribution. This is because the prior information is used to calculate the posterior distribution, as well as update the degree of certainty. 
+\end{enumerate}
+
+
 \end{document}
